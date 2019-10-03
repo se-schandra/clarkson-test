@@ -2,8 +2,8 @@ import FlatTree from "../scripts/FlatTree";
 
 it("renders flatten tree",()=>{
     const flatTree = new FlatTree();
-    flatTree.flattenTree(
-        {
+    const flattenTree = flatTree.flattenTree(
+        [{
             "name": "FORT",
             "parentFolderId": "1e5196f3-c3f9-34db-aaab-8efdd63dd5b0",
             "id": "c64ac3d7-5e88-40ed-8d6f-e7f10d21c5bc",
@@ -12,8 +12,12 @@ it("renders flatten tree",()=>{
                 "favouritesForUsers": [3, 18927, 17552],
                 "id": "697eae2f-40dd-445e-a0f0-a918f3a4d5c0"
             }]
-        }
-    )
+        }]
+    );
+
+    expect(flattenTree.length).toEqual(8);
+    expect(flattenTree["0_name"]).toEqual("FORT");
+    expect(flattenTree["0_children_name"]).toEqual("test@app.live")
 
     //TODO test the flattened structure matches the expected output
 

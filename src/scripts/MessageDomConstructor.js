@@ -1,13 +1,20 @@
 export default class MessageDomConstructor{
     createMessageNode(string){
+        document.body.appendChild(this._createNode(string));
+    }
+
+    appendMessageNode(string, parent) {
+        parent.appendChild(this._createNode(string));
+    }
+
+    _createNode(string) {
         const prefixAttached = this._detachPrefix(string);
         const div = document.createElement("div");
-        if(prefixAttached){
-            div.class = prefixAttached[0];
+        if (prefixAttached) {
+            div.classList = prefixAttached[0];
         }
-        div.appendChild(document.createTextNode(prefixAttached? prefixAttached[1]: string));
-
-        document.body.appendChild(div);
+        div.appendChild(document.createTextNode(prefixAttached ? prefixAttached[1] : string));
+        return div;
     }
 
     _detachPrefix(string) {

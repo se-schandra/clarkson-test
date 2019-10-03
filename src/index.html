@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Sample Webpack App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sample Webpack App</title>
 </head>
 <body>
-<table class="messages-table">
-  <tbody></tbody>
+<table class="messages-table mobile">
+    <thead>
+
+    <tr>
+        <th>from</th>
+        <th>type</th>
+    </tr>
+
+    <tr>
+        <th colspan="2">subject</th>
+    </tr>
+
+    <tr>
+        <th>date</th>
+        <th>attachment</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
 </table>
+<table class="messages-table desktop">
+    <thead>
+    <th>date</th>
+    <th>subject</th>
+    <th>from</th>
+    <th>attachment</th>
+    <th>type</th>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+<hr/>
+<section id="domConstructor">
+    <h4>Demo for MessageDomConstructor</h4>
+</section>
+
+<hr/>
 <script src="/src/index.js"></script>
 </body>
 </html>
