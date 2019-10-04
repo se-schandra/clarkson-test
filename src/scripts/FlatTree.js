@@ -45,11 +45,7 @@ export default class FlatTree {
      * @param tree
      */
     getParentFromOriginalTree(nodeId, tree) {
-        tree.forEach((element, index) => {
-            if(element["children"] && element["children"]["id"] === nodeId){
-                return element;
-            }
-        });
+        return tree.find(element => element["children"] && element["children"].find(child => child.id === nodeId));
     }
 
     /**
@@ -58,16 +54,12 @@ export default class FlatTree {
      * @param newNode
      * @param tree
      */
-    insertNodeInOriginalTree(nodeId,newNode, tree){
-        tree.forEach((element, index) => {
-            if(element.id === nodeId){
-                if(!element.children){
-                    element.children = new Array();
-                }
-                element.children.push(newNode);
-                return element;
-            }
-        });
+    insertNodeInOriginalTree(nodeId, newNode, tree) {
+        const parentIndex = tree.findIndex(element => element.id === nodeId);
+        if (parentIndex > -1) {
+            tree[parentIndex].children.push(newNode);
+        }
+        return tree;
     }
 
     /**
@@ -111,7 +103,7 @@ export default class FlatTree {
             //is an array node
             const arrayChildKey = parentKey.substr(0, "_");
             if (!parentNode[arrayChildKey]) {
-                parentNode[arrayChildKey] = new Array();
+                parentNode[arrayChildKey] = [];
             }
             parentNode[arrayChildKey][parentKey.substr(parentKey.lastIndexOf("_") - 1)] = value;
         } else {
@@ -126,7 +118,7 @@ export default class FlatTree {
      * @param newNode
      * @param flatTree
      */
-    insertNodeIntoFlatTree(nodeId,newNode, flatTree){
+    insertNodeIntoFlatTree(nodeId, newNode, flatTree) {
 
     }
 
