@@ -1,43 +1,42 @@
 export default class MessagesList {
 
     createMessagesList(messages) {
-        const tbody = document.querySelectorAll(".messages-table tbody");
-        if (tbody) {
+        const tbodyMobile = document.querySelector(".messages-table.mobile tbody");
+        const tbodyDesktop = document.querySelector(".messages-table.desktop tbody");
+        if (tbodyMobile && tbodyDesktop) {
             messages.forEach((message, index) => {
-                const row = document.createElement("tr");
-                row.class = `message_${index}`;
-                const date = this.createCell(message.date);
-                const subject = this.createCell(message.subject);
-                const from = this.createCell(message.from);
-                const attachemnet = this.createCell(message.attachment);
-                const type = this.createCell(message.type);
 
                 const row1 = document.createElement("tr");
-                row1.appendChild(from);
-                row1.appendChild(type);
-                tbody[0].appendChild(row1);
+                row1.appendChild(this.createCell(message.from));
+                row1.appendChild(this.createCell(message.type));
+                tbodyMobile.appendChild(row1);
 
                 const row2 = document.createElement("tr");
-                row2.colSpan = 2;
-                row1.appendChild(subject);
-                tbody[0].appendChild(row2);
+                const mobileSubject = this.createCell(message.subject);
+                mobileSubject.colSpan = 2;
+                row2.appendChild(mobileSubject);
+                tbodyMobile.appendChild(row2);
 
                 const row3 = document.createElement("tr");
-                row3.colSpan = 2;
-                row1.appendChild(date);
-                tbody[0].appendChild(attachemnet);
+                row3.appendChild(this.createCell(message.date));
+                row3.appendChild(this.createCell(message.attachment));
+                tbodyMobile.appendChild(row3);
 
 
-                row.appendChild(date);
+                //desktop
 
-                row.appendChild(subject);
+                const row = document.createElement("tr");
+                row.class = `message_${index}`;
+                row.appendChild(this.createCell(message.date));
 
-                row.appendChild(from);
+                row.appendChild(this.createCell(message.subject));
 
-                row.appendChild(attachemnet);
+                row.appendChild(this.createCell(message.from));
 
-                row.appendChild(type);
-                tbody[1].appendChild(row);
+                row.appendChild(this.createCell(message.attachment));
+
+                row.appendChild(this.createCell(message.type));
+                tbodyDesktop.appendChild(row);
 
 
             })
